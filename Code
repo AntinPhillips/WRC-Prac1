@@ -1,0 +1,171 @@
+Introductory Programs
+
+Program 1
+IN
+STO 99
+IN
+STO 98
+LDA 99
+SUB 98
+OUT
+HLT
+
+
+Program 2
+
+IN
+STO 99
+IN
+STO 98
+SUB 99
+BRP 09
+LDA 99
+OUT
+HLT
+LDA 98
+OUT
+HLT
+
+Program 3
+
+00 OUT
+01 IN
+02 STO 99
+03 IN
+04 STO 98
+05 IN
+06 STO 97
+//store larger (98 vs 99) in 96
+//store smaller in 95
+07 LDA 99
+08 SUB 98
+09 BRP 15
+10 LDA 98
+11 STO 96
+12 LDA 99
+13 STO 95
+14 BRP 19
+15 LDA 99
+16 STO 96
+17 LDA 98
+18 STO 95
+//97 > saved largest (96)?
+19 LDA 97
+20 SUB 96
+21 BRP 28 //return 96
+// 97 < largest. check if 97 > saved smallest (95)
+22 LDA 97
+23 SUB 95
+24 BRP 31 //return 97
+// 97 < smallest. return smallest (95)
+25 LDA 95
+26 OUT
+27 HLT
+//return 96
+28 LDA 96
+29 OUT
+30 HLT
+//return 97
+31 LDA 97
+32 OUT
+33 HLT
+
+Intermediate Programs
+
+Program 1
+
+00 LDA 51
+01 OUT
+02 OUT
+03 ADD 50
+//under 20?
+04 STO 52
+05 SUB 53
+06 BRP 14
+07 BRZ 14
+08 LDA 51
+09 STO 50
+10 LDA 52
+11 STO 51
+12 OUT
+13 BR 03
+14 HLT
+
+
+//variables
+50 1
+51 1
+52 0
+53 20
+
+
+Program 2
+
+00 IN
+01 BRP 03
+02 HLT
+03 ADD 49
+04 STO 47
+05 BR 47
+06 OUT
+07 HLT
+
+//variables
+48 BR 06
+49 549
+//primes
+50 2
+51 3
+52 5
+53 7
+54 11
+55 13
+56 17
+57 19
+58 23
+59 29
+60 31
+61 37
+62 41
+63 43
+64 47
+65 53
+66 59
+67 61
+68 67
+69 71
+
+
+Challenging Programs
+
+Format A Loader
+
+00 IN
+01 STO 19
+02 LDA 19
+03 SUB 18
+04 BRZ 20
+05 LDA 18
+06 ADD 17
+07 STO 18
+08 ADD 16
+09 STO 14
+10 IN
+11 BR 14
+
+15 BR 02
+16 319
+17 1
+18 0
+
+
+Format B Loader
+
+00 IN
+01 BRZ 20
+02 ADD 19
+03 STO 17
+04 IN
+05 BR 17
+18 BR 00
+19 300
